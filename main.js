@@ -1,8 +1,21 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-const WIDTH = 600;
-const HEIGHT = 600;
+let scale = 1;
+
+if(window.innerWidth < 900) {
+  scale = window.innerWidth / 700;
+}
+
+console.log(window.innerWidth);
+
+const WIDTH = 400 * scale;
+const HEIGHT = 400 * scale;
+const STROKEWIDTH = 20 * scale;
+
+const RAD1 = 380 / 2 * scale;
+const RAD2 = 323 / 2 * scale;
+const RAD3 = 266 / 2 * scale;
 
 const COLORS = {
   c1: "#BA4CFF",
@@ -13,9 +26,6 @@ const COLORS = {
 canvas.width = WIDTH;
 canvas.height = HEIGHT;
 
-const RAD1 = 380 / 2;
-const RAD2 = 323 / 2;
-const RAD3 = 266 / 2;
 
 let date;
 let day;
@@ -29,6 +39,7 @@ let millisFromMinute;
 let hoursFromDay;
 let minutesFromHour;
 let secondsFromMinute;
+
 
 window.requestAnimationFrame(draw);
 
@@ -78,7 +89,7 @@ function drawSemicircle(radius, degree, color) {
   );
 
   ctx.strokeStyle = color;
-  ctx.lineWidth = 20;
+  ctx.lineWidth = STROKEWIDTH;
   ctx.lineCap = "round";
   ctx.stroke();
 }
